@@ -1,0 +1,3 @@
+[console_scripts]
+scripts = list_scripts:list_console_scripts
+search = find_files:cli

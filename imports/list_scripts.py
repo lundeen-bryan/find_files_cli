@@ -30,7 +30,7 @@ def list_console_scripts():
     Lists all console_scripts registered in the current environment for this package.
     """
     # Set your package name here
-    package_name = 'cli_tools'
+    package_name = 'click_apps'
 
     # Fetch all entry points in the 'console_scripts' group
     entry_points = importlib.metadata.entry_points(group='console_scripts')

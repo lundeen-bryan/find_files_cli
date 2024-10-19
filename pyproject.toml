@@ -16,7 +16,7 @@ description = "Command-line tools for various tasks."
 readme = {file = "README.md", content-type = "text/markdown"}
 
 # Specify the Python version your project supports
-requires-python = ">=3.11.10"
+requires-python = ">=3.10.15"
 
 # Set your project's license. Modify if using a different license
 license = {text = "MIT"}
@@ -42,6 +42,7 @@ homepage = "Enter your URL here"
 [project.scripts]
 # Define command-line scripts. Update script names and entry points based on your project
 scripts = "list_scripts:list_console_scripts"
+search = "find_files:cli"
 
 [tool.setuptools.packages]
 # Define where your Python packages are located. Adjust 'where' if your package structure changes
