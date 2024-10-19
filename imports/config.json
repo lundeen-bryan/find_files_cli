@@ -1,0 +1,23 @@
+{
+  "app_notes": {
+    "about_this_config": "see: https://betterdatascience.com/python-json-configuration-file/",
+    "version": "1.0.0",
+    "app_name": "",
+    "description": "",
+    "author": "",
+    "email": "",
+    "create_date": "",
+    "source_files": "src",
+    "support_documents": "docs",
+    "jupyter_notebooks": "jupyter",
+    "log_files": "time stamps for opening project",
+    "logs": "on",
+    "git_ignore": "docs, excel, jupyter, logs, .venv",
+    "python_packages": {}
+  },
+    "main_app": {
+      "clear_console_module": "_clear_console",
+      "app_module": "myapp",
+      "app_class": "Pygubu1App"
+    }
+}

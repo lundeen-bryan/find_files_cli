@@ -1,0 +1,205 @@
+{
+    "General Try-Except Block": {
+        "prefix": "gentry",
+        "body": [
+            "try:",
+            "    # ${1:description} using a function from an imported module",
+            "    ${2:module_name} = config_data.get(\"${3:config_section}\", {}).get(\"${4:config_key}\")",
+            "    if ${2:module_name} in imported_modules:",
+            "        imported_modules[${2:module_name}].${5:function_name}()",
+            "        logger.info('${6:Success message}')",
+            "    else:",
+            "        logger.warning(f\"'${2:module_name}' module not found.\")",
+            "except Exception as e:",
+            "    logger.error(f\"Error during main execution: {e}\")"
+        ],
+        "description": "General try-except block with module and function placeholders"
+    },
+    "Load and Run Application Form": {
+        "prefix": "loadrunapp",
+        "body": [
+            "try:",
+            "    # Run the main application form",
+            "    app_module_name = config_data.get(\"${1:main_app}\", {}).get(\"${2:app_module}\")",
+            "    app_class_name = config_data.get(\"${1:main_app}\", {}).get(\"${3:app_class}\")",
+            "    if app_module_name in imported_modules:",
+            "        app_class = getattr(imported_modules[app_module_name], app_class_name, None)",
+            "        if app_class:",
+            "            app = app_class()",
+            "            app.run()",
+            "        else:",
+            "            logger.error(f\"'${3:app_class}' class not found in '${2:app_module}' module.\")",
+            "    else:",
+            "        logger.error(f\"'${2:app_module}' module not found.\")",
+            "except Exception as e:",
+            "    logger.error(f\"Error during main execution: {e}\")"
+        ],
+        "description": "Load and run a main application form based on configuration data"
+    },
+	"Check Main": {
+		"prefix": "pymain",
+		"body": "if __name__ == '__main__':",
+		"description": "will insert the main call",
+	},
+	"Header": {
+			"prefix": "pyHeader",
+			"body": [
+					"$LINE_COMMENT$LINE_COMMENT===========================================================================================",
+					"$LINE_COMMENT$LINE_COMMENT Date: .............. ${1:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+					"$LINE_COMMENT$LINE_COMMENT Program: ........... $TM_FILENAME",
+					"$LINE_COMMENT$LINE_COMMENT Website: ........... ${2:weburl}",
+					"$LINE_COMMENT$LINE_COMMENT Description: ....... ${3:description}",
+					"$LINE_COMMENT$LINE_COMMENT Installs to: ....... ${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1\\/$2/}",
+					"$LINE_COMMENT$LINE_COMMENT Compatibility: ..... ${4:Excel,Word,etc.}",
+					"$LINE_COMMENT$LINE_COMMENT Contact Author: .... ${5:author}",
+					"$LINE_COMMENT$LINE_COMMENT Copyright © ........ ${6:company} $CURRENT_YEAR. All rights reserved.",
+					"$LINE_COMMENT$LINE_COMMENT Called by: ......... ${7:other_subs}",
+					"$LINE_COMMENT$LINE_COMMENT Called to: ......... ${8:other_subs}",
+					"$LINE_COMMENT$LINE_COMMENT Arguments: ......... ${9:parameters}",
+					"$LINE_COMMENT$LINE_COMMENT",
+					"$LINE_COMMENT$LINE_COMMENT Notes:",
+					"$LINE_COMMENT$LINE_COMMENT",
+					"$LINE_COMMENT$LINE_COMMENT",
+					"$LINE_COMMENT$LINE_COMMENT===========================================================================================\n\n\n$0"
+			],
+			"description": "insert module description"
+	},
+	"Update Code": {
+		"prefix": "pyHeaderUpdate",
+		"body": [
+				"$LINE_COMMENT$LINE_COMMENT Updated: .............. ${1:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+				"$LINE_COMMENT$LINE_COMMENT Updated by: ........... ${2:author}",
+				"$LINE_COMMENT$LINE_COMMENT Changes made: ......... _",
+				" (${3:change number}) ${4:description}",
+		]
+	},
+	"dictionary comprehension from list": {
+		"prefix": "py-dict-comp1",
+		"body": [
+			"${1:new_dictionary_name} = {${3}:${4:value_to_add} for ${3:item_in_list_as_key} in ${2:list}}",
+		 ],
+		"description": "create a new dictionary from an iterable list"
+	},
+	"dictionary comprehension from list with condition": {
+		"prefix": "py-dict-comp2",
+		"body": [
+			"${1:new_dictionary_name} = {${3}:${4:value_to_add} for ${3:item_in_list_as_key} in ${2:list} if ${5:condition}}",
+		],
+		"description": "create a new dictionary from an iterable list if condition is met"
+	},
+	"dictionary comprehension from a dictionary": {
+		"prefix": "py-dict-comp3",
+		"body": [
+			"${1:new_dictionary_name} = {${3}:${5:value_from_formula} for (${3:key_in_dict}, ${4:item_in_list}) in ${2:list}.items()}",
+		],
+		"description": "create a dictionary from a dictionary and change the value but same key"
+	},
+	"dictionary comprehension from a dictionary with condition": {
+		"prefix": "py-dict-comp4",
+		"body": [
+			"${1:new_dictionary_name} = {${3}:${5:value_from_formula} for (${3:key_in_dict}, ${4:item_in_list}) in ${2:list}.items() if ${6:condition}}",
+		],
+		"description": "create a dictionary from a dictionary and change the value but same key if condition is met"
+	},
+	"list comprehension - instead of for loop": {
+		"prefix": "py-list-comp1",
+		"body": [
+			"${1:new_list_name} = [${3:value_from_formula} for ${4:item_in_list} in ${2:list_or_value_from_formula}]",
+		],
+		"description": "create a list by iterating through another list"
+	},
+	"list comprehension - instead of for loop with condition": {
+		"prefix": "py-list-comp2",
+		"body": [
+			"${1:new_list_name} = [${3:value_from_formula} for ${4:item_in_list} in ${2:list_or_value_from_formula} if ${5:condition}]",
+		],
+		"description": "create a list by iterating through another if condition is met"
+	},
+	"comment-block": {
+		"prefix": "comment-block",
+		"body": "\n'''\n *\n * ${1:Block comment}\n *\n'''\n\n",
+		"description": "Comment: Block style",
+	},
+	"comment-section-header": {
+		"prefix": "comment-section-header",
+		"body": "\n$LINE_COMMENT ===========================================\n$LINE_COMMENT =            ${1:Section comment block}            =\n$LINE_COMMENT ===========================================\n$0",
+		"description": "Comment: Section header",
+	},
+	"comment-section-footer": {
+		"prefix": "comment-section-footer",
+		"body": "$LINE_COMMENT =======  End of ${1:Section comment block}  =======\n\n",
+		"description": "Comment: Section footer",
+	},
+	"comment-section": {
+		"prefix": "comment-section",
+		"body": "\n$LINE_COMMENT ===========================================\n$LINE_COMMENT =            ${1:Section comment block}            =\n$LINE_COMMENT ===========================================\n$2\n\n$LINE_COMMENT =======  End of ${1:Section comment block}  =======\n\n",
+		"description": "Comment: Full section",
+	},
+	"comment-subsection": {
+		"prefix": "comment-subsection",
+		"body": "\n'''----------  ${1:Subsection comment block}  ----------'''\n\n",
+		"description": "Comment: Subsection",
+	},
+	"comment before": {
+		"prefix": "\/\/comment-before",
+		"body": "\n''' ${1:Comment} \n'''\n$0",
+		"description": "Comment: Single-line block",
+	},
+	"comment": {
+		"prefix": "\/\/comment-after",
+		"body": "\n# ${1:Comment} \n\n$0",
+		"description": "line-break then comment after code",
+	},
+	"markdown-notebook": {
+		"prefix": "mdn",
+		"body": "%%markdown\n# ${0}",
+		"description": "Inserts markdown for a notebook",
+	},
+	"markdown-ipython": {
+		"prefix": "mdi",
+		"body": "%%markdown\n# ${0}",
+		"description": "Inserts markdown for a notebook",
+	},
+	"jupyter-plot": {
+		"prefix": "jupyter-plot",
+		"body": [
+			"# %%",
+			"## imports plotly: pyo, go; pandas; xlwings; numpy;",
+			"# import plotly.offline as pyo",
+			"# import plotly.graph_objects as go",
+			"# import plotly.figure_factory as ff",
+			"# import plotly.io as io # use instead of pyo",
+			"# import pandas as pd",
+			"# import numpy as np",
+			"# import xlwings as xw",
+			"",
+			"# %%",
+			"## Read in data to data frame using pandas",
+			"df = pd.read_csv(\"${1:datasource}\")",
+			"df.shape # show the col/rows of the df",
+			"df.info()",
+			"",
+			"# %%",
+			"## view the dataframe",
+			"pd.options.display.min_rows=${2:number}",
+			"# |df,xw.view(df),df.head(),df.to_markdown()|",
+			"",
+			"# %%",
+			"## create data variable using list/dict comprehension",
+			"data = []",
+			"",
+			"# %% Create layout",
+			"layout = go.Layout(title=\"${3:title}\")",
+			"",
+			"# %%",
+			"## Create figure",
+			"fig = go.Figure(data=data, layout=layout)",
+			"",
+			"# %%",
+			"## Load plot to html",
+			"pyo.plot(fig, filename=\"${4:filename}\")",
+			""
+		],
+		"description": "This inserts a chart to using plotly",
+	}
+}

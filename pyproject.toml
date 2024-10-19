@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# Replace 'click_apps' with the name of your project
+name = "click_apps"
+
+# Update the version number based on your project's versioning strategy
+version = "1.0.0"
+
+# Add a brief description of your project here
+description = "Command-line tools for various tasks."
+
+# Reference to your README file and its format, typically markdown
+readme = {file = "README.md", content-type = "text/markdown"}
+
+# Specify the Python version your project supports
+requires-python = ">=3.11.10"
+
+# Set your project's license. Modify if using a different license
+license = {text = "MIT"}
+
+# Author information, replace with your name or team's name
+authors = [{name = "lundeen-bryan"}]
+
+# Add relevant classifiers for your project, e.g., programming language, license type
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+
+# Keywords to help users find your project. Update as needed for your project focus
+keywords = ["cli", "tools", "command-line", "click"]
+
+# Add project-specific dependencies here. Modify the list as per the project requirements
+dependencies = ["rich_click"]
+
+[project.urls]
+# Add URLs for your project's homepage or repository
+homepage = "Enter your URL here"
+
+[project.scripts]
+# Define command-line scripts. Update script names and entry points based on your project
+scripts = "list_scripts:list_console_scripts"
+
+[tool.setuptools.packages]
+# Define where your Python packages are located. Adjust 'where' if your package structure changes
+find = {where = ["imports"]}
